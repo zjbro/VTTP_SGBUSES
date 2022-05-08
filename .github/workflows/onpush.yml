@@ -2,6 +2,9 @@ name: Compile, test, deploy
 on: [ "push" ]
 env:
   ACCOUNTKEY: ${{ secrets.accountkey }}
+  SPRING_DATASOURCE_USERNAME: ${{ secrets.SPRING_DATASOURCE_USERNAME}}
+  SPRING_DATASOURCE_PASSWORD: ${{ secrets.SPRING_DATASOURCE_PASSWORD }}
+  SPRING_DATASOURCE_URL: ${{ secrets.SPRING_DATASOURCE_URL }}
 jobs:
   step1:
     runs-on: ubuntu-latest
