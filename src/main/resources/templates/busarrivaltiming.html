@@ -14,9 +14,11 @@
         integrity="sha512-10/jx2EXwxxWqCLX/hHth/vu2KY3jCF70dCQB8TSgNjbCVAC/8vai53GfMDrO2Emgwccf2pJqxct9ehpzG+MTw==" 
         crossorigin="anonymous" referrerpolicy="no-referrer" />
 </head>
+    
 <body>
     <div class="container">
-        <table class="table">
+        <table class="table-info table-striped caption-top" style="width:100%">
+            <caption>Bus Stop Code: <span th:text="${busStopCode}"></span></caption>
             <thead>
                 <tr>
                     <th scope="col">Service #</th>

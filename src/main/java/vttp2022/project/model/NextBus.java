@@ -1,6 +1,6 @@
 package vttp2022.project.model;
 
-import java.text.ParseException;
+
 import java.time.Duration;
 import java.time.Instant;
 
@@ -17,13 +17,18 @@ public class NextBus {
     // private String feature;
     // private String type;
 
-    public static NextBus create(JsonObject o) throws ParseException{
+    public static NextBus create(JsonObject o){
         NextBus nextBus = new NextBus();
         Instant start = Instant.now();
+        System.out.println(">>>>>>>>>>>>"+o.getString("EstimatedArrival"));
+        if (o.getString("EstimatedArrival").equals("")){
+            nextBus.estimatedArrival = "No Est. Available";
+            return nextBus;
+        }
         Instant end = Instant.parse(o.getString("EstimatedArrival"));
         Duration timeElapsed = Duration.between(start, end);
         nextBus.estimatedArrival = Long.toString(timeElapsed.toMillis()/60000); //convert to minutes from miliseconds
-        
+
         // nextBus.originCode = o.getString("OriginCode");
         // nextBus.destinationCode = o.getString("DestinationCode");
         // nextBus.latitude = o.getString("Latitude");

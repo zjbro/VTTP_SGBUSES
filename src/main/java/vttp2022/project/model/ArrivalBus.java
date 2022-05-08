@@ -1,8 +1,5 @@
 package vttp2022.project.model;
 
-import java.io.IOException;
-import java.text.ParseException;
-
 import jakarta.json.JsonObject;
 
 
@@ -13,7 +10,7 @@ public class ArrivalBus {
     private NextBus nextBus2;
     private NextBus nextBus3;
 
-    public ArrivalBus create (JsonObject o) throws IOException, ParseException {
+    public ArrivalBus create (JsonObject o) {
         ArrivalBus arrivalBus = new ArrivalBus();
         arrivalBus.serviceNo = o.getString("ServiceNo");
         arrivalBus.operator = o.getString("Operator");

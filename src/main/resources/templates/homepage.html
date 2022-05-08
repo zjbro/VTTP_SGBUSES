@@ -17,6 +17,7 @@
 <body>
     <div class="container">
         <div class="row mt-5">
+            <h1>Welcome <span data-th-text="${username}">,</span></h1>
             <div class="col">
                 <form method="GET" action="/busStop">
                     <div class="input-group">
@@ -29,27 +30,43 @@
                     </div>
                 </form>
             </div>
-            <div class="col">
-                <form method="POST" action="/authenticate">
-
-                    <table>
+        </div>
+        <div class="row mt-5">
+            <h2>Bookmarks</h2>
+                <table class="table">
+                    <thead>
                         <tr>
-                            <td>Username: </td>
-                            <td> <input type="text" name="username" size="30" required> </td>
+                            <th scope="col">Bus Stop Code</th>
+                            <th scope="col">Description</th>
+                            <th scope="col"></th>
                         </tr>
+                    </thead>
+                    <tbody>
+                        <td>44669</td>
+                        <td>Opp Blk 532</td>
+                        <td><button type="submit">Delete</button></td>
+                        <!-- <tr th:each="bookmark : ${bookmarks}">
+                            <td th:text="${bookmark.busStopCode}"></td>
+                            <td th:text="${bookmark.description}"></td>
+                            <td><button type="submit">Delete</button></td>
+                        </tr> -->
                         <tr>
-                            <td>Password: </td>
-                            <td> <input type="password" name="password" size="30" required> </td>
+                            <form method="POST" action="/addBookmark">
+                                <td><input type="text" name="busStopCode" size="5" required></td>
+                                <td><input type="text" name="description" size="30" required></td>
+                                <td><button type="submit">Add</button></td>  
+                            </form>
                         </tr>
-                        <tr>
-                            <td></td>
-                            <td>
-                                <button type="submit">Login</button>
-                            </td>
-                        </tr>
-                    </table>
-                </form>
-            </div>
+                    </tbody>
+                </table>
+        </div>
+                    
+        <div class="row">
+            <form >
+                <button type="submit" formmethod="GET" formaction="/authenticate/logout">
+                    Logout
+                </button>
+            </form>
         </div>
     </div>
     
