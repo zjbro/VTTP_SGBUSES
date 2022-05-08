@@ -6,3 +6,6 @@
 
 ### Pipeline 2
 [![Deploy to Heroku](https://github.com/zjbro/VTTP_SGBUSES/actions/workflows/pushtoheroku.yml/badge.svg)](https://github.com/zjbro/VTTP_SGBUSES/actions/workflows/pushtoheroku.yml)
+
+### Heroku Link
+https://vttp-sgbuses.herokuapp.com/
