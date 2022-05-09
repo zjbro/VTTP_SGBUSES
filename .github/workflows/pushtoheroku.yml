@@ -5,6 +5,8 @@ on:
     - 'v*'
     - '!v*-alpha' 
     # push everything start with v, but ignore those with alpha
+env:
+  ACCOUNTKEY: ${{ secrets.accountkey }}
 jobs:
   deploy_to_heroku:
     runs-on: ubuntu-latest

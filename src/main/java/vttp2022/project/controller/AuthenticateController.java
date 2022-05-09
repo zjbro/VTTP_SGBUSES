@@ -24,7 +24,7 @@ public class AuthenticateController {
     @GetMapping("/logout")
     public String getLogout(HttpSession sess) {
         sess.invalidate();
-        return "index";
+        return "login";
     }
 
     @PostMapping
@@ -46,7 +46,7 @@ public class AuthenticateController {
         } else {
             // Successful
             sess.setAttribute("username", username);
-            mvc = new ModelAndView("redirect:/protected/homepage");
+            mvc = new ModelAndView("redirect:/protected/bookmarks");
         }
         
         return mvc;

@@ -4,7 +4,7 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
+    <title>Bookmarks</title>
     <link rel="stylesheet" 
             href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap/5.1.3/css/bootstrap.min.css" 
             integrity="sha512-GQGU0fMMi238uA+a/bdWJfpUGKUkBdgfFdgBm72SUQ6BeyWjoY/ton0tEjH+OSH9iP4Dfh+7HM0I9f5eR0L/4w==" 
@@ -16,20 +16,14 @@
 </head>
 <body>
     <div class="container">
+        <nav class="nav nav-pills nav-fill">
+            <a class="nav-link" href="/">Homepage</a>
+            <a class="nav-link active" aria-current="page">Bookmarks</a>
+            <a class="nav-link disabled">Login</a>
+            <a class="nav-link disabled">Register</a>
+          </nav>
         <div class="row mt-5">
-            <h1>Welcome <span data-th-text="${username}">,</span></h1>
-            <div class="col">
-                <form method="GET" action="/busStop">
-                    <div class="input-group">
-                        <input type="text" name="busStopCode" id="busStopCode" 
-                                class="form-control" required
-                                placeholder="Enter bus stop code here">
-                            <button type="submit" class="btn btn-warning btn-lg">
-                                <i class="fa-solid fa-magnifying-glass fa-2x"></i>
-                            </button>
-                    </div>
-                </form>
-            </div>
+            <h1>Welcome back, <span data-th-text="${username}"></span>!</h1>
         </div>
         <div class="row mt-5">
             <h2>Bookmarks</h2>
@@ -42,18 +36,15 @@
                         </tr>
                     </thead>
                     <tbody>
-                        <td>44669</td>
-                        <td>Opp Blk 532</td>
-                        <td><button type="submit">Delete</button></td>
-                        <!-- <tr th:each="bookmark : ${bookmarks}">
-                            <td th:text="${bookmark.busStopCode}"></td>
+                        <tr th:each="bookmark : ${bookmarks}">
+                            <td><a class="btn btn-primary" th:href="@{/busStop?busStopCode={bSC}(bSC=${bookmark.busStopCode})}" role="button"><span th:text="${bookmark.busStopCode}"></span></a></td>
                             <td th:text="${bookmark.description}"></td>
                             <td><button type="submit">Delete</button></td>
-                        </tr> -->
+                        </tr>
                         <tr>
                             <form method="POST" action="/addBookmark">
                                 <td><input type="text" name="busStopCode" size="5" required></td>
-                                <td><input type="text" name="description" size="30" required></td>
+                                <td><input type="text" name="description" size="30" placeholder="leave blank to auto-generate"></td>
                                 <td><button type="submit">Add</button></td>  
                             </form>
                         </tr>

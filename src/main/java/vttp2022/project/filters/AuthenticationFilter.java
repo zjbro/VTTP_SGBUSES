@@ -31,7 +31,7 @@ public class AuthenticationFilter implements Filter {
         System.out.printf(">>>> \t name: %s\n", username);
 
         if ((null == username) || (username.trim().length() <= 0)) {
-            httpResp.sendRedirect("/index.html");
+            httpResp.sendRedirect("/login");
             return;
         }
 

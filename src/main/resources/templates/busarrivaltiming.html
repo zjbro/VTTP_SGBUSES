@@ -18,7 +18,7 @@
 <body>
     <div class="container">
         <table class="table-info table-striped caption-top" style="width:100%">
-            <caption>Bus Stop Code: <span th:text="${busStopCode}"></span></caption>
+            <caption>Bus Stop Code: <span th:text="${busStopCode}"></span>, <span th:text="${description}"></span></caption>
             <thead>
                 <tr>
                     <th scope="col">Service #</th>
@@ -34,7 +34,8 @@
                     <td th:text="${busService.nextBus2}"></td> 
                     <td th:text="${busService.nextBus3}"></td>    
                 </tr>
-        </tbody>
+            </tbody>
+            <a class="btn btn-primary" href="/goback" role="button">Back</a>
         </table>
     </div>
 </body>

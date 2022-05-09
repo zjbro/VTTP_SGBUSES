@@ -4,7 +4,7 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>SGBUSES</title>
+    <title>Registration is successful!</title>
     <link rel="stylesheet" 
             href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap/5.1.3/css/bootstrap.min.css" 
             integrity="sha512-GQGU0fMMi238uA+a/bdWJfpUGKUkBdgfFdgBm72SUQ6BeyWjoY/ton0tEjH+OSH9iP4Dfh+7HM0I9f5eR0L/4w==" 
@@ -17,24 +17,15 @@
 <body>
     <div class="container">
         <nav class="nav nav-pills nav-fill">
-            <a class="nav-link active" aria-current="page" href="#">Homepage</a>
-            <a class="nav-link" href="/protected/bookmarks">Bookmarks</a>
+            <a class="nav-link" href="/">Homepage</a>
+            <a class="nav-link disabled" href="/protected/bookmarks">Bookmarks</a>
             <a class="nav-link" href="/login">Login</a>
-            <a class="nav-link" href="/register">Register</a>
+            <a class="nav-link active" aria-current="page">Register</a>
           </nav>
         <div class="row mt-5">
-            <h1><center>SG BUSES</center></h1>
-            <div class="col mt-5">
-                <form method="GET" action="/busStop">
-                    <div class="input-group">
-                        <input type="text" name="busStopCode" id="busStopCode" 
-                                class="form-control" required
-                                placeholder="Enter bus stop code here">
-                            <button type="submit" class="btn btn-warning btn-lg">
-                                <i class="fa-solid fa-magnifying-glass fa-2x"></i>
-                            </button>
-                    </div>
-                </form>
+            <div class="col">
+                <h2><span>Registeration is successful!</span></h2>
+                <a class="btn btn-primary" href="/login" role="button">Click here to go back</a>
             </div>
         </div>
     </div>

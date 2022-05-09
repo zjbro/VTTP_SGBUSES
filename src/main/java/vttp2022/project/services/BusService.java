@@ -21,6 +21,7 @@ import jakarta.json.Json;
 import jakarta.json.JsonObject;
 import jakarta.json.JsonReader;
 import vttp2022.project.model.ArrivalBus;
+import vttp2022.project.model.Bookmark;
 import vttp2022.project.repositories.BusRepository;
 
 
@@ -62,7 +63,48 @@ public class BusService {
     }
 
     public boolean addBookMark(MultiValueMap<String, String> payload, HttpSession sess){
-        return bRepo.addBookmark(payload.getFirst("busStopCode"), payload.getFirst("description"), (String)sess.getAttribute("username"));
+        String busStopCode = payload.getFirst("busStopCode");
+        String description = payload.getFirst("description");
+        if((null == description) || (description.trim().length() <= 0)){
+            description = bRepo.getDescription(busStopCode);
+        }
+        String username = (String)sess.getAttribute("username");
+        return bRepo.addBookmark(busStopCode, description, username);
     }
 
+    public List<Bookmark> retrieveBookmarks(String username){
+        List<Bookmark> bookmarks = bRepo.getBookmarks(username);
+        return bookmarks;
+    }
+
+    public boolean addUser (MultiValueMap<String, String> payload){
+        return bRepo.addUser(payload.getFirst("username"), payload.getFirst("password"));
+    }
+    
+
+    // public void populateBusStop (){
+    //     for (int j=0; j<200; j++){
+    //     String busArrivalUrl = UriComponentsBuilder.fromUriString(URL)
+    //     .path("/ltaodataservice/BusStops")
+    //     .queryParam("$skip", j*500)
+    //     .toUriString();
+    //     RestTemplate restTemplate = new RestTemplate();
+    //     RequestEntity<Void> req = RequestEntity.get(busArrivalUrl)
+    //         .header("AccountKey", apiKey)
+    //         .build();
+
+    //     ResponseEntity<String> resp = restTemplate.exchange(req, String.class);
+
+    //     try {InputStream is = new ByteArrayInputStream(resp.getBody().getBytes());
+    //         JsonReader r = Json.createReader(is);
+    //         JsonObject o = r.readObject();
+    //         for (int i = 0; i<o.getJsonArray("value").size(); i++){
+    //                 bRepo.populateBusStops(o.getJsonArray("value").getJsonObject(i).getString("BusStopCode"), o.getJsonArray("value").getJsonObject(i).getString("Description"));
+    //             }
+    //         } catch (Exception ex) {
+    //             ex.printStackTrace();
+    //         }
+    //     }
+
+    // }
 }

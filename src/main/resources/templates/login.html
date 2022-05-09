@@ -17,23 +17,21 @@
 <body>
     <div class="container">
         <nav class="nav nav-pills nav-fill">
-            <a class="nav-link active" aria-current="page" href="#">Homepage</a>
-            <a class="nav-link" href="/protected/bookmarks">Bookmarks</a>
-            <a class="nav-link" href="/login">Login</a>
+            <a class="nav-link" href="/">Homepage</a>
+            <a class="nav-link disabled" href="/protected/bookmarks">Bookmarks</a>
+            <a class="nav-link active" aria-current="page" href="#">Login</a>
             <a class="nav-link" href="/register">Register</a>
           </nav>
         <div class="row mt-5">
-            <h1><center>SG BUSES</center></h1>
-            <div class="col mt-5">
-                <form method="GET" action="/busStop">
-                    <div class="input-group">
-                        <input type="text" name="busStopCode" id="busStopCode" 
-                                class="form-control" required
-                                placeholder="Enter bus stop code here">
-                            <button type="submit" class="btn btn-warning btn-lg">
-                                <i class="fa-solid fa-magnifying-glass fa-2x"></i>
-                            </button>
-                    </div>
+            <div class="col">
+                <h2><span>Login</span></h2>
+                <form method="POST" action="/authenticate">
+                    <label for="username" class="form-label">Username</label>
+                    <input type="text" class="form-control" name="username" size="30" id="username" required> 
+                    <label for="password" class="form-label">Password</label>
+                    <input type="password" class="form-control" name="password" size="30" id="password" required>
+                    <br>
+                    <button class="btn btn-primary" type="submit">Login</button>
                 </form>
             </div>
         </div>
