@@ -8,7 +8,7 @@ import javax.servlet.ServletException;
 import javax.servlet.ServletRequest;
 import javax.servlet.ServletResponse;
 import javax.servlet.http.HttpServletRequest;
-import javax.servlet.http.HttpServletResponse;
+// import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
 import org.springframework.stereotype.Component;
@@ -21,7 +21,7 @@ public class AuthenticationFilter implements Filter {
             throws IOException, ServletException {
        
         HttpServletRequest httpReq = (HttpServletRequest)request;
-        HttpServletResponse httpResp = (HttpServletResponse)response;
+        // HttpServletResponse httpResp = (HttpServletResponse)response;
 
         // Get the HTTP session
         HttpSession sess = httpReq.getSession();
@@ -30,10 +30,10 @@ public class AuthenticationFilter implements Filter {
         System.out.printf(">>>> url: %s\n", httpReq.getRequestURI().toString());
         System.out.printf(">>>> \t name: %s\n", username);
 
-        if ((null == username) || (username.trim().length() <= 0)) {
-            httpResp.sendRedirect("/login");
-            return;
-        }
+        // if ((null == username) || (username.trim().length() <= 0)) {
+        //     httpResp.sendRedirect("/login");
+        //     return;
+        // }
 
         chain.doFilter(request, response);
     } 

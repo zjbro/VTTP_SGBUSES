@@ -19,8 +19,6 @@ public class ProtectedController {
     public ModelAndView post(@PathVariable String view, HttpSession sess) {
 
         String username = (String)sess.getAttribute("username");
-        System.out.println(">>>> view: " + view);
-
         ModelAndView mvc = new ModelAndView();
         mvc.setViewName(view);
         mvc.addObject("username", username);

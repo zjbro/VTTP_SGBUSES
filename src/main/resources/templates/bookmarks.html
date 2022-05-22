@@ -37,15 +37,15 @@
                     </thead>
                     <tbody>
                         <tr th:each="bookmark : ${bookmarks}">
-                            <td><a class="btn btn-primary" th:href="@{/busStop?busStopCode={bSC}(bSC=${bookmark.busStopCode})}" role="button"><span th:text="${bookmark.busStopCode}"></span></a></td>
+                            <td><a class="btn btn-info" th:href="@{/busStop?busStopCode={bSC}(bSC=${bookmark.busStopCode})}" role="button"><span th:text="${bookmark.busStopCode}"></span></a></td>
                             <td th:text="${bookmark.description}"></td>
-                            <td><button type="submit">Delete</button></td>
+                            <td><form><button type="submit" formmethod="GET" th:formaction="@{/deleteBookmark/{bSC}(bSC=${bookmark.busStopCode})}" class="btn btn-warning">Remove</button></form></td>
                         </tr>
                         <tr>
                             <form method="POST" action="/addBookmark">
                                 <td><input type="text" name="busStopCode" size="5" required></td>
                                 <td><input type="text" name="description" size="30" placeholder="leave blank to auto-generate"></td>
-                                <td><button type="submit">Add</button></td>  
+                                <td><button type="submit" class="btn btn-success">Add</button></td>  
                             </form>
                         </tr>
                     </tbody>
@@ -54,8 +54,15 @@
                     
         <div class="row">
             <form >
-                <button type="submit" formmethod="GET" formaction="/authenticate/logout">
+                <button type="submit" formmethod="GET" formaction="/authenticate/logout" class="btn btn-secondary">
                     Logout
+                </button>
+            </form>
+            <br>
+            <br>
+            <form >
+                <button type="submit" formmethod="GET" formaction="/deleteuser" class="btn btn-danger">
+                    Delete Account
                 </button>
             </form>
         </div>

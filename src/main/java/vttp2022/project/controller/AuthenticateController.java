@@ -22,9 +22,12 @@ public class AuthenticateController {
     private UsersService usersSvc;
 
     @GetMapping("/logout")
-    public String getLogout(HttpSession sess) {
+    public ModelAndView getLogout(HttpSession sess) {
+        ModelAndView mav = new ModelAndView();
         sess.invalidate();
-        return "login";
+        mav.setViewName("login");
+        mav.setStatus(HttpStatus.OK);
+        return mav;
     }
 
     @PostMapping
@@ -41,12 +44,14 @@ public class AuthenticateController {
         if (!usersSvc.authenticate(username, password)) {
             // Not successful
             mvc.setViewName("error");
+            mvc.addObject("error","Invalid username or password, please try again.");
             mvc.setStatus(HttpStatus.FORBIDDEN);
 
         } else {
             // Successful
             sess.setAttribute("username", username);
             mvc = new ModelAndView("redirect:/protected/bookmarks");
+            mvc.setStatus(HttpStatus.OK);
         }
         
         return mvc;

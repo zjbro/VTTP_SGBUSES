@@ -4,7 +4,6 @@ import java.io.ByteArrayInputStream;
 import java.io.InputStream;
 import java.util.ArrayList;
 import java.util.List;
-import java.util.Optional;
 
 import javax.servlet.http.HttpSession;
 
@@ -35,7 +34,7 @@ public class BusService {
     @Autowired
     private BusRepository bRepo;
 
-    public Optional<List<ArrivalBus>> arrivingBus (String busStopCode){
+    public List<ArrivalBus> arrivingBus (String busStopCode){
         String busArrivalUrl = UriComponentsBuilder.fromUriString(URL)
             .path("/ltaodataservice/BusArrivalv2")
             .queryParam("BusStopCode", busStopCode)
@@ -59,7 +58,7 @@ public class BusService {
         } catch (Exception ex) {
             ex.printStackTrace();
         }
-        return Optional.of(busServices);       
+        return busServices;       
     }
 
     public boolean addBookMark(MultiValueMap<String, String> payload, HttpSession sess){
@@ -70,6 +69,11 @@ public class BusService {
         }
         String username = (String)sess.getAttribute("username");
         return bRepo.addBookmark(busStopCode, description, username);
+    }
+
+    public boolean deleteBookmark(String busStopCode, HttpSession sess){
+        String username = (String)sess.getAttribute("username");
+        return bRepo.deleteBookmark(busStopCode, username);
     }
 
     public List<Bookmark> retrieveBookmarks(String username){

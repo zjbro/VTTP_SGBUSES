@@ -13,7 +13,6 @@ public class NextBus {
     public static NextBus create(JsonObject o){
         NextBus nextBus = new NextBus();
         Instant start = Instant.now();
-        System.out.println(">>>>>>>>>>>>"+o.getString("EstimatedArrival"));
         if (o.getString("EstimatedArrival").equals("")){
             nextBus.estimatedArrival = "No Est. Available";
             return nextBus;
@@ -21,6 +20,10 @@ public class NextBus {
         Instant end = Instant.parse(o.getString("EstimatedArrival"));
         Duration timeElapsed = Duration.between(start, end);
         nextBus.estimatedArrival = Long.toString(timeElapsed.toMillis()/60000); //convert to minutes from miliseconds
+        if(nextBus.estimatedArrival == "0"){
+            nextBus.estimatedArrival = "Arr";
+            return nextBus;
+        }
         return nextBus;
     }
 
