@@ -41,7 +41,7 @@ public class AuthenticateControllerTest {
             .post("/authenticate")
             .contentType(MediaType.APPLICATION_FORM_URLENCODED_VALUE)
             .content("username=testUsername&password=testPassword"))
-            .andExpect(status().isOk());
+            .andExpect(status().isFound());
         mockMvc.perform(MockMvcRequestBuilders
             .get("/deleteuser")
             .sessionAttr("username", "testUsername"))
