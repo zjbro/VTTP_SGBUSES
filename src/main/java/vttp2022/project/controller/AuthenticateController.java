@@ -51,7 +51,6 @@ public class AuthenticateController {
             // Successful
             sess.setAttribute("username", username);
             mvc = new ModelAndView("redirect:/protected/bookmarks");
-            mvc.setStatus(HttpStatus.OK);
         }
         
         return mvc;
