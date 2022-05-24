@@ -42,7 +42,7 @@ public class BusArrivalController {
         String description = bRepo.getDescription(busStopCode);
         if((null == description) || (description.trim().length() <= 0)){
             mav.setStatus(HttpStatus.NOT_FOUND);
-            mav.addObject("error","Invalid bus stop code, please try again.");
+            mav.addObject("error","Invalid entry, please enter a valid bus stop code.");
             mav.setViewName("invalidbusstopcode");
             return mav;
         } else {
@@ -162,8 +162,11 @@ public class BusArrivalController {
             mav.setViewName("index");
             return mav;
         }
+        List<Bookmark> bookmarks = bService.retrieveBookmarks(username);
+        mav.addObject("username", username);
+        mav.addObject("bookmarks", bookmarks);
         mav.setStatus(HttpStatus.OK);
-        mav.setViewName("redirect:/protected/bookmarks");
+        mav.setViewName("bookmarks");
         return mav;
     }
 

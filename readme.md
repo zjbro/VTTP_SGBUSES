@@ -1,7 +1,7 @@
 ### Pipeline 1
 [![Compile, test, deploy](https://github.com/zjbro/VTTP_SGBUSES/actions/workflows/onpush.yml/badge.svg)](https://github.com/zjbro/VTTP_SGBUSES/actions/workflows/onpush.yml)
 
-![Coverage](https://vttp2022.sgp1.digitaloceanspaces.com/coverage/VTTP_SGBUSES/jacoco.svg)
+![Coverage](https://vttp2022.sgp1.digitaloceanspaces.com/coverage/VTTP_SGBUSES/jacoco.svg?branch=master)
 
 
 ### Pipeline 2

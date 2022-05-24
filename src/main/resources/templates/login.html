@@ -1,41 +1,43 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>SGBUSES</title>
-    <link rel="stylesheet" 
-            href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap/5.1.3/css/bootstrap.min.css" 
-            integrity="sha512-GQGU0fMMi238uA+a/bdWJfpUGKUkBdgfFdgBm72SUQ6BeyWjoY/ton0tEjH+OSH9iP4Dfh+7HM0I9f5eR0L/4w==" 
-            crossorigin="anonymous" referrerpolicy="no-referrer" />
-        <link rel="stylesheet" 
-            href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.1.0/css/all.min.css" 
-            integrity="sha512-10/jx2EXwxxWqCLX/hHth/vu2KY3jCF70dCQB8TSgNjbCVAC/8vai53GfMDrO2Emgwccf2pJqxct9ehpzG+MTw==" 
-            crossorigin="anonymous" referrerpolicy="no-referrer" />
-</head>
-<body>
-    <div class="container">
-        <nav class="nav nav-pills nav-fill">
-            <a class="nav-link" href="/">Homepage</a>
-            <a class="nav-link disabled" href="/protected/bookmarks">Bookmarks</a>
-            <a class="nav-link active" aria-current="page" href="#">Login</a>
-            <a class="nav-link" href="/register">Register</a>
-          </nav>
-        <div class="row mt-5">
-            <div class="col">
-                <h2><span>Login</span></h2>
-                <form method="POST" action="/authenticate">
-                    <label for="username" class="form-label">Username</label>
-                    <input type="text" class="form-control" name="username" size="30" id="username" required> 
-                    <label for="password" class="form-label">Password</label>
-                    <input type="password" class="form-control" name="password" size="30" id="password" required>
-                    <br>
-                    <button class="btn btn-primary" type="submit">Login</button>
-                </form>
-            </div>
-        </div>
-    </div>
-    
-</body>
+    <head th:replace="fragments/head :: head"></head>
+        <header>
+            <div th:replace="fragments/header :: header">
+            </div>   
+
+            <!-- Background image -->
+            <div id="intro" class="bg-image shadow-2-strong">
+                <div class="mask d-flex align-items-center h-100" style="background-color: rgba(0, 0, 0, 0.8);">
+                
+                    <div class="container">
+                        <div class="row justify-content-center">
+                          <div class="col-xl-5 col-md-8">
+                              
+                            <form class="bg-white  rounded-5 shadow-5-strong p-5" method="POST" action="/authenticate">
+                                <h2><strong>LOGIN</strong></h2>
+                                <br>
+                                <!-- Username input -->
+                              <div class="form-outline mb-4">
+                                <label for="username" class="form-label">Username</label>
+                                <input type="text" class="form-control" name="username" size="30" id="username" required>
+                              </div>
+                
+                              <!-- Password input -->
+                              <div class="form-outline mb-4">
+                                <label for="password" class="form-label">Password</label>
+                                <input type="password" class="form-control" name="password" size="30" id="password" required>
+                              </div>
+                
+                              <!-- Submit button -->
+                              <button type="submit" class="btn btn-primary btn-block">Sign in</button>
+                            </form>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+            <!-- Background image -->
+
+        </header>
 </html>
+

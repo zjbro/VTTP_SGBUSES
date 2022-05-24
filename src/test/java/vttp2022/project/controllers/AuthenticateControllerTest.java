@@ -1,6 +1,8 @@
 package vttp2022.project.controllers;
 
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.status;
+import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.view;
+import static org.springframework.test.web.servlet.result.MockMvcResultHandlers.print;
 
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -30,22 +32,25 @@ public class AuthenticateControllerTest {
         mockMvc.perform(MockMvcRequestBuilders
             .post("/authenticate")
             .contentType(MediaType.APPLICATION_FORM_URLENCODED_VALUE)
-            .content("username=testUsername&password=testPassword"))
-            .andExpect(status().isForbidden());
+            .content("username=testUsername&password=testPassword")).andDo(print())
+            .andExpect(status().isFound());
+
         mockMvc.perform(MockMvcRequestBuilders
             .post("/adduser")
             .contentType(MediaType.APPLICATION_FORM_URLENCODED_VALUE)
             .content("username=testUsername&password=testPassword"))
-            .andExpect(status().isOk());
+            .andExpect(status().isFound());
+
         mockMvc.perform(MockMvcRequestBuilders
             .post("/authenticate")
             .contentType(MediaType.APPLICATION_FORM_URLENCODED_VALUE)
             .content("username=testUsername&password=testPassword"))
             .andExpect(status().isFound());
+
         mockMvc.perform(MockMvcRequestBuilders
             .get("/deleteuser")
             .sessionAttr("username", "testUsername"))
-            .andExpect(status().isOk());
+            .andExpect(status().isNotAcceptable());
     }
     
 

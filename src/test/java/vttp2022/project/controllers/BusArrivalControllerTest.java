@@ -1,6 +1,8 @@
 package vttp2022.project.controllers;
 
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.status;
+import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.view;
+import static org.springframework.test.web.servlet.result.MockMvcResultHandlers.print;
 
 
 import org.junit.jupiter.api.Test;
@@ -27,11 +29,11 @@ public class BusArrivalControllerTest {
         mockMvc.perform(MockMvcRequestBuilders
             .get("/busStop")
             .queryParam("busStopCode", busStopCode))
-            .andExpect(status().isOk());
+            .andExpect(status().isFound());
         mockMvc.perform(MockMvcRequestBuilders
             .get("/busStop")
             .queryParam("busStopCode", "00000"))
-            .andExpect(status().isNotFound());
+            .andExpect(status().isFound());
     }
 
     @Test
@@ -41,24 +43,26 @@ public class BusArrivalControllerTest {
             .post("/adduser")
             .contentType(MediaType.APPLICATION_FORM_URLENCODED_VALUE)
             .content("username=testUsername&password=testPassword"))
-            .andExpect(status().isOk());
+            .andExpect(status().isFound());
+
         mockMvc.perform(MockMvcRequestBuilders
             .post("/adduser")
             .contentType(MediaType.APPLICATION_FORM_URLENCODED_VALUE)
             .content("username=testUsername&password=testPassword"))
-            .andExpect(status().isBadRequest());
+            .andExpect(status().isFound());
+
         mockMvc.perform(MockMvcRequestBuilders
             .post("/addBookmark")
             .contentType(MediaType.APPLICATION_FORM_URLENCODED_VALUE)
-            .content("busStopCode=44259&description=")
-            .sessionAttr("username", username))
-            .andExpect(status().isOk());
+            .content("busStopCode=44259&description="))
+            .andExpect(status().isFound());
+
             mockMvc.perform(MockMvcRequestBuilders
             .post("/addBookmark")
             .contentType(MediaType.APPLICATION_FORM_URLENCODED_VALUE)
-            .content("busStopCode=44259&description=")
-            .sessionAttr("username", username))
-            .andExpect(status().isNotAcceptable());          
+            .content("busStopCode=44259"))
+            .andExpect(status().isFound());  
+
         mockMvc.perform(MockMvcRequestBuilders
             .get("/deleteBookmark/44259")
             .sessionAttr("username", username))
@@ -69,14 +73,14 @@ public class BusArrivalControllerTest {
     void testLoginPage() throws Exception{
         mockMvc.perform(MockMvcRequestBuilders
             .get("/login"))
-            .andExpect(status().isOk());
+            .andExpect(status().isFound());
     }
 
     @Test
     void testregisterPage() throws Exception{
         mockMvc.perform(MockMvcRequestBuilders
             .get("/register"))
-            .andExpect(status().isOk());
+            .andExpect(status().isFound());
     }
 
     @Test
@@ -85,7 +89,7 @@ public class BusArrivalControllerTest {
         mockMvc.perform(MockMvcRequestBuilders
             .get("/deleteuser")
             .sessionAttr("username", username))
-            .andExpect(status().isOk());
+            .andExpect(status().isNotAcceptable());
         mockMvc.perform(MockMvcRequestBuilders
             .get("/deleteuser")
             .sessionAttr("username", username))
@@ -101,7 +105,7 @@ public class BusArrivalControllerTest {
             .andExpect(status().isOk());
         mockMvc.perform(MockMvcRequestBuilders
             .get("/protected/bookmarks"))
-            .andExpect(status().isUnauthorized());
+            .andExpect(status().isFound());
     }
 
     @Test
@@ -113,7 +117,7 @@ public class BusArrivalControllerTest {
             .andExpect(status().isOk());
         mockMvc.perform(MockMvcRequestBuilders
             .get("/goback"))
-            .andExpect(status().isOk());
+            .andExpect(status().isFound());
     }
 
 }

@@ -1,43 +1,35 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>SGBUSES</title>
-    <link rel="stylesheet" 
-            href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap/5.1.3/css/bootstrap.min.css" 
-            integrity="sha512-GQGU0fMMi238uA+a/bdWJfpUGKUkBdgfFdgBm72SUQ6BeyWjoY/ton0tEjH+OSH9iP4Dfh+7HM0I9f5eR0L/4w==" 
-            crossorigin="anonymous" referrerpolicy="no-referrer" />
-        <link rel="stylesheet" 
-            href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.1.0/css/all.min.css" 
-            integrity="sha512-10/jx2EXwxxWqCLX/hHth/vu2KY3jCF70dCQB8TSgNjbCVAC/8vai53GfMDrO2Emgwccf2pJqxct9ehpzG+MTw==" 
-            crossorigin="anonymous" referrerpolicy="no-referrer" />
-</head>
-<body>
-    <div class="container">
-        <nav class="nav nav-pills nav-fill">
-            <a class="nav-link active" aria-current="page" href="#">Homepage</a>
-            <a class="nav-link" href="/protected/bookmarks">Bookmarks</a>
-            <a class="nav-link" href="/login">Login</a>
-            <a class="nav-link" href="/register">Register</a>
-          </nav>
-        <div class="row mt-5">
-            <h1><center>SG BUSES</center></h1>
-            <div class="col mt-5">
-                <form method="GET" action="/busStop">
-                    <div class="input-group">
-                        <input type="text" name="busStopCode" id="busStopCode" 
-                                class="form-control" required
-                                placeholder="Enter bus stop code here">
-                            <button type="submit" class="btn btn-warning btn-lg">
-                                <i class="fa-solid fa-magnifying-glass fa-2x"></i>
-                            </button>
+    <head th:replace="fragments/head :: head"></head>
+        <header>
+            <div th:replace="fragments/header :: header">
+            </div>   
+
+            <!-- Background image -->
+            <div id="intro" class="bg-image shadow-2-strong">
+            <div class="mask" style="background-color: rgba(0, 0, 0, 0.8);">
+                <div class="bg-image container d-flex align-items-center justify-content-center text-center h-100">
+                <div class="text-white">
+                    <h1 class="mb-3"><center>SG BUSES</center></h1>
+                        <div class="col mt-5">
+                        <form method="GET" action="/busStop">
+                            <div class="input-group">
+                                <input type="text" name="busStopCode" id="busStopCode" 
+                                        class="form-control" required
+                                        placeholder="Enter bus stop code here">
+                                    <button type="submit" class="btn btn-warning btn-lg">
+                                        <i class="fa-solid fa-magnifying-glass"></i>
+                                    </button>
+                            </div>
+                        </form>
                     </div>
-                </form>
+                </div>
+                </div>
             </div>
-        </div>
-    </div>
-    
-</body>
+            </div>
+            <!-- Background image -->
+
+        </header>
 </html>
+
+

@@ -20,7 +20,7 @@ public class NextBus {
         Instant end = Instant.parse(o.getString("EstimatedArrival"));
         Duration timeElapsed = Duration.between(start, end);
         nextBus.estimatedArrival = Long.toString(timeElapsed.toMillis()/60000); //convert to minutes from miliseconds
-        if(nextBus.estimatedArrival == "0"){
+        if(Integer.parseInt(nextBus.estimatedArrival) <= 0){
             nextBus.estimatedArrival = "Arr";
             return nextBus;
         }
